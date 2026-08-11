@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         闲鱼网页版暗夜模式
 // @namespace    https://www.goofish.com/
-// @version      1.2.1
+// @version      1.2.2
 // @description  为闲鱼网页版提供护眼暗夜主题，支持菜单和 Alt/Option + D 快速切换。
 // @author       Felix & Codex
 // @homepageURL  https://github.com/xioFelix/userscripts/tree/main/tampermonkey/goofish-dark-mode
@@ -61,6 +61,10 @@
     }
     html.${ROOT_CLASS} body { color: var(--gf-text); }
     html.${ROOT_CLASS} a { color: inherit; }
+    html.${ROOT_CLASS}.page-home body > main,
+    html.${ROOT_CLASS}.page-home [class*="content-container"] > main {
+      background-color: var(--gf-bg) !important;
+    }
 
     /* Mobile H5 documents use inline text colors rather than desktop module classes. */
     html.${ROOT_CLASS}.gf-dark-h5 body,
@@ -96,6 +100,32 @@
       border-color: var(--gf-border) !important;
       caret-color: var(--gf-yellow) !important;
     }
+    html.${ROOT_CLASS} [class*="search-history"] {
+      background-color: var(--gf-bg-raised) !important;
+      color: var(--gf-text) !important;
+      border: 1px solid var(--gf-border) !important;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .5) !important;
+    }
+    html.${ROOT_CLASS} [class*="search-select-items-container"] {
+      background-color: var(--gf-bg-raised) !important;
+      color: var(--gf-text) !important;
+      border: 1px solid var(--gf-border) !important;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .45) !important;
+    }
+    html.${ROOT_CLASS} [class*="search-select-items-container"] > * {
+      color: var(--gf-text) !important;
+    }
+    html.${ROOT_CLASS} [class*="search-select-items-container"] > *:hover {
+      background-color: var(--gf-bg-hover) !important;
+    }
+    html.${ROOT_CLASS} [class*="history-item"] {
+      background-color: transparent !important;
+      color: var(--gf-text) !important;
+    }
+    html.${ROOT_CLASS} [class*="history-item"]:hover,
+    html.${ROOT_CLASS} [class*="history-item"]:focus-visible {
+      background-color: var(--gf-bg-hover) !important;
+    }
     html.${ROOT_CLASS} [class*="search-item"],
     html.${ROOT_CLASS} [class*="nick"],
     html.${ROOT_CLASS} [class*="orderText"],
@@ -110,6 +140,9 @@
     html.${ROOT_CLASS} [class*="post"],
     html.${ROOT_CLASS} [class*="value"] {
       color: var(--gf-text) !important;
+    }
+    html.${ROOT_CLASS} [class*="cate-item-title-divider"] {
+      color: var(--gf-text-muted) !important;
     }
     html.${ROOT_CLASS} input::placeholder,
     html.${ROOT_CLASS} textarea::placeholder { color: var(--gf-text-muted) !important; }
@@ -179,6 +212,32 @@
       background: #3b2a1d !important;
       color: #ffb266 !important;
       border-color: #68472c !important;
+    }
+    html.${ROOT_CLASS} [class*="credit-container"] {
+      background: #3b2a1d !important;
+      color: #ffb266 !important;
+      border-color: #68472c !important;
+    }
+    html.${ROOT_CLASS} [class*="right-card-main"] {
+      background-color: rgba(23, 26, 32, .9) !important;
+      color: var(--gf-text) !important;
+    }
+    html.${ROOT_CLASS} :where([class*="right-card-main-symbol"], [class*="right-card-main-number"]) {
+      color: #ff744d !important;
+    }
+
+    /* Region picker is rendered inside an Ant popover but owns light nested columns. */
+    html.${ROOT_CLASS} [class*="areaWrap"],
+    html.${ROOT_CLASS} [class*="areaWrap"] :where([class*="panel--"], [class*="col--"],
+      [class*="provItem"], [class*="cityItem"], [class*="districtItem"]) {
+      background-color: var(--gf-bg-raised) !important;
+      color: var(--gf-text) !important;
+      border-color: var(--gf-border) !important;
+    }
+    html.${ROOT_CLASS} [class*="areaWrap"] :where([class*="provItemActive"], [class*="cityItemActive"],
+      [class*="districtItemActive"]) {
+      background-color: var(--gf-bg-hover) !important;
+      color: var(--gf-yellow) !important;
     }
 
     /* Personal center and order/account navigation. Scoped to avoid generic module names elsewhere. */
