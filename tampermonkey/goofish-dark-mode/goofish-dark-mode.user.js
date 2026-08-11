@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         闲鱼网页版暗夜模式
 // @namespace    https://www.goofish.com/
-// @version      1.2.2
+// @version      1.2.3
 // @description  为闲鱼网页版提供护眼暗夜主题，支持菜单和 Alt/Option + D 快速切换。
 // @author       Felix & Codex
 // @homepageURL  https://github.com/xioFelix/userscripts/tree/main/tampermonkey/goofish-dark-mode
@@ -144,6 +144,27 @@
     html.${ROOT_CLASS} [class*="cate-item-title-divider"] {
       color: var(--gf-text-muted) !important;
     }
+    html.${ROOT_CLASS} [class*="cate-item-sub-container"] {
+      background-color: var(--gf-bg-raised) !important;
+      color: var(--gf-text) !important;
+      border: 1px solid var(--gf-border) !important;
+      box-shadow: 0 16px 44px rgba(0, 0, 0, .5) !important;
+    }
+    html.${ROOT_CLASS} [class*="cate-item-sub-container"] :where(
+      [class*="cate-item-sub-wrap"], [class*="cate-item-sub-item-container"],
+      [class*="cate-item-sub-item-cate2"], [class*="cate-item-sub-item-cate3"]
+    ) {
+      background-color: transparent !important;
+      color: var(--gf-text) !important;
+      border-color: var(--gf-border) !important;
+    }
+    html.${ROOT_CLASS} [class*="cate-item-sub-container"] a {
+      color: var(--gf-text-secondary) !important;
+    }
+    html.${ROOT_CLASS} [class*="cate-item-sub-container"] [class*="cate-item-sub-item-cate2"] a,
+    html.${ROOT_CLASS} [class*="cate-item-sub-container"] a:hover {
+      color: var(--gf-yellow) !important;
+    }
     html.${ROOT_CLASS} input::placeholder,
     html.${ROOT_CLASS} textarea::placeholder { color: var(--gf-text-muted) !important; }
 
@@ -217,6 +238,11 @@
       background: #3b2a1d !important;
       color: #ffb266 !important;
       border-color: #68472c !important;
+    }
+    html.${ROOT_CLASS} [class*="credit-container"] > * {
+      background: transparent !important;
+      color: inherit !important;
+      border-color: inherit !important;
     }
     html.${ROOT_CLASS} [class*="right-card-main"] {
       background-color: rgba(23, 26, 32, .9) !important;
